@@ -18,3 +18,4 @@
 .idea/*
 .keep
 .idea/
+Gemfile.lock
