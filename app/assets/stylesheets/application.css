@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+
+.border_blue{
+    border:2px solid #2c60ac;
+}
+
+.color-box {
+    float:left;
+    width:30px;
+    height:30px;
+    margin:5px;
+    border: 2px solid white;
+}
+
+.metro .button {
+    text-align: center !important;
+    vertical-align: middle !important;
+    background-color: #2c60ac !important;
+    line-height: 23px !important;
+}
+
+.metro .button:hover {
+    background:#5384cc !important;
+    color: #ffffff !important;
+}
+.metro .button:active {
+    background-color: #1a498e !important;
+    color: #ffffff !important;
+    border-color: transparent;
+}
+
+.btn_blue{
+    background:#2c60ac !important;
+    color: #ffffff !important;
+}
+.btn_blue:hover{
+    background:#5384cc !important;
+    color: #ffffff !important;
+}
+.btn_blue:active{
+    background-color:#1a498e !important;
+    color: #ffffff !important;
+}
+
+.input_button{
+    padding-bottom: 7px !important;
+    padding-top: 13px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    vertical-align: middle !important;
+}

@@ -1,0 +1,121 @@
+
+
+<div  class="container page-wrap">
+  <div class="grid">
+    <div class="row">
+      <div class="row margin_TB">
+        <h2 class="text_blue text-bold">Customization</h2>
+        <!--BugFix #1580-->
+        <p class="para_font margin10 para"><%= @para_text %></p>
+      </div>
+      <div class="grid fluid">
+        <%= form_tag(customize_home_index_path, method: :post) do %>
+            <div class="row  border_blue margin10">
+              <div class="span6 row no-margin" >
+                <div class="row no-margin border_bottom_gray padding15">
+                  <h4>Change Title: </h4>
+                  <div data-role="input-control" class="input-control text">
+                    <%= text_field_tag(:app_title, @app_title) %>
+                  </div>
+                </div>
+                <div class="row no-margin border_bottom_gray padding15">
+                  <h4>Change Color</h4>
+                  <div class="grid fluid">
+                    <div class="row no-margin">
+                      <div class="span10">
+                        <div class="row no-margin">
+                          <span class="border padding20 margin_B10 span11">
+                            <span class="place-left margin_T10">Use Color Picker</span>
+                            <span class="color-box"></span>
+                          </span>
+                        </div>
+                        <div class="row">
+                          <span class="border padding20 margin_B10 span11"> <span>Enter Hex Code</span>
+                            <div data-role="input-control" class="input-control text size3">
+                              <input type="input" placeholder="#ffffff" class="header_color_hex header_hex_input" maxlength="7"
+                                     disabled value="<%= @header_color %>"/>
+                              <%= hidden_field_tag :header_color, @header_color %>
+                              <button tabindex="" class="btn-clear" type="button"></button>
+                            </div>
+                          </span>
+                        </div>
+                        <div class="row">
+                          <span class="border padding20 margin_B10 span11">
+                            <span>Enter RGB Code</span>
+                            <div data-role="input-control" class="input-control text size1">
+                              <input type="text" class="header_color_r" value="<%= @header_rgb[0]%>"  maxlength="3" disabled >
+                              <button tabindex="" class="btn-clear" type="button"></button>
+                            </div>
+                            <div data-role="input-control" class="input-control text size1">
+                              <input type="text" class="header_color_g" value="<%= @header_rgb[1]%>"  maxlength="3" disabled >
+                              <button tabindex="" class="btn-clear" type="button"></button>
+                            </div>
+                            <div data-role="input-control" class="input-control text size1">
+                              <input type="text" class="header_color_b" value="<%= @header_rgb[2]%>" maxlength="3" disabled>
+                              <button tabindex="" class="btn-clear" type="button"></button>
+                            </div>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="span2">
+                        <div class='color-preview' style="height:306px; width:20px; background: <%= @header_color %>; border:2px solid #000;" ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="span6 row no-margin">
+                <div class="row no-margin border_bottom_gray padding15">
+                  <h4>Replace Paragraph Text:</h4>
+                  <p>Text limit is 500 characters</p>
+                  <div class="row no-margin">
+                    <div class="input-control textarea">
+                      <textarea class="para_text" name="para_text" style="min-height:300px;"><%= @para_text %></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row no-margin border_bottom_gray padding15">
+                  <h4>Select Font:</h4>
+                  <div class="row no-margin">
+                    <div class="input-control textarea">
+                      <%= select_tag :font, options_for_select([ "Open Sans", "Verdana", "Arial", "Helvetica" ], @font) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row text-center">
+              <%= submit_tag 'Save',  options = { class: "button large btn_blue text-bold text_upper input_button "} %>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  var headerColor = "<%= @header_color.split('#')[1] %>";
+  $('.color-box').colpick({
+      colorScheme: 'dark',
+      layout: 'rgbhex',
+      color: headerColor,
+      onSubmit:function(hsb,hex,rgb,el) {
+          $(el).css('background-color', '#'+hex);
+          $('.header_color_hex').val('#'+hex);
+          $('.header_color_r').val(rgb.r);
+          $('.header_color_g').val(rgb.g);
+          $('.header_color_b').val(rgb.b);
+          $('.color-preview').css('background-color','#'+hex);
+          $('#header_color').val('#'+hex);
+          $('.navigation-bar').css('background-color','#'+hex);
+          $(el).colpickHide();
+        }
+    }).css('background-color', '#'+headerColor);
+   $('.navigation-bar').css('background-color','#'+headerColor);
+</script>

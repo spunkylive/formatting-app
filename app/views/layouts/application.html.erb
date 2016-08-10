@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FormattingApp</title>
+  <title><%= session[:data] ? session[:data]["app_title"] : 'FormattingApp' %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+      var notifyMessage = '<%= flash[:notice] %>',
+              notifyLevel = '<%= flash[:level] %>';
+  </script>
 </head>
-<body>
-
-<%= yield %>
-
+<body class="metro" style="font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif">
+<header >
+  <nav class="navigation-bar">
+    <div class="container">
+      <nav class="navigation-bar-content">
+        <div class="element">
+          <a href="#" data-no-turbolink="true"><img src="/assets/logo.png" border="0" height="50" width="50"></a>
+        </div>
+        <div class="header-text element"><%= @app_title %></div>
+        <div class="element place-right">
+          <%= link_to 'Reset Cache', reset_cache_home_index_path,  :method => :delete, data: {no_turbolink: true} %>
+        </div>
+      </nav>
+    </div>
+  </nav>
+</header>
+<div class="content">
+  <%= yield %>
+</div>
 </body>
 </html>
