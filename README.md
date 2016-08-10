@@ -1,2 +1,2 @@
 # formatting-app
-Eable user to change page title, color and font etc.
+Eable user to change page title, color and font etc..
