@@ -8,7 +8,7 @@ class HomeController < ApplicationController
           It encourages and facilitates the use of web standards such as JSON or XML for data transfer, and HTML, CSS and JavaScript for display and user interfacing.
           In addition to MVC, Rails emphasizes the use of other well-known software engineering.'
     @font = session[:data] ? session[:data]["font"] : "Verdana"
-    @header_rgb = session[:data] ? convert_to_rgb(session[:data]["header_color"].split('#')) : convert_to_rgb('2c60ac')
+    @header_rgb = session[:data] ? convert_to_rgb(session[:data]["header_color"].split('#')[1]) : convert_to_rgb('2c60ac')
   end
 
   def customize
